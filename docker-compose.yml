@@ -1,0 +1,26 @@
+services:
+  server:
+    container_name: server
+
+  postgres:
+    container_name: postgres
+    image: postgres:latest
+    ports: 5432:5432
+    environment:
+      - POSTGRES_USER=david
+      - POSTGRES_PASSWORD=pass
+      - POSTGRES_DB=hng-task-2
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    restart: always
+
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4:latest
+    ports: 5050:5050
+    environment:
+      - PGADMIN_MAIL=david
+      - PGADMIN_PW=david
+    restart: always
+
+volumes: data/db
